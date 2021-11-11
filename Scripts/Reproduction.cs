@@ -25,7 +25,7 @@ public class Reproduction : MonoBehaviour
 		Instantiate(_enemy, transform.position, transform.rotation);
 
 		if (_time >= 10)
-        {
+			{
 			yield break;
 		}
 
