@@ -6,28 +6,34 @@ public class Reproduction : MonoBehaviour
 {
 	[SerializeField] private GameObject _enemy;
 	[SerializeField] private float _waitTime = 2f;
-	[SerializeField] private float Time = 0f;
+	[SerializeField] private float _time = 0f;
 
 	private void Start()
 	{
-		Invoke(nameof(SpawnEnemy), _waitTime);
+		while (_time <= 10)
+		{
+			StartCoroutine(SpawnEnemy());
+		}
 	}
 
-	private void SpawnEnemy()
+	private IEnumerator SpawnEnemy()
 	{
-		Time++;
+		var waitForOneSeconds = new WaitForSeconds(1f);
+
+		_time++;
 
 		Instantiate(_enemy, transform.position, transform.rotation);
 
-		if (Time >= 10)
+		if (_time >= 10)
         {
-			return;
-        }
+			yield break;
+		}
 
 		if (_waitTime > .2f)
 		{
 			Invoke(nameof(SpawnEnemy), _waitTime);
 		}
 
+		yield return waitForOneSeconds;
 	}
 }
