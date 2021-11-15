@@ -22,7 +22,7 @@ public class Reproduction : MonoBehaviour
 		{
 		    Instantiate(_target, transform.position, transform.rotation);
 
-		yield return waitForSeconds;
+			yield return waitForSeconds;
 		}
 	}
 }
