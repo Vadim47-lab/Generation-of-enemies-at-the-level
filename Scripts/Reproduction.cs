@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GameObject))]
 public class Reproduction : MonoBehaviour
 {
-	[SerializeField] private GameObject _enemy;
-	[SerializeField] private float _waitTime = 0f;
-	[SerializeField] private float _endSpawn = 10;
+	[SerializeField] private GameObject _target;
 
 	private void Start()
 	{
+		_target = gameObject.GetComponent<GameObject>();
 		StartCoroutine(SpawnEnemy());
 	}
 
 	private IEnumerator SpawnEnemy()
 	{
-		while (_waitTime <= _endSpawn)
+		var waitForSeconds = new WaitForSeconds(2f);
+
+		while (true)
 		{
-			_waitTime += 2;
+		    Instantiate(_target, transform.position, transform.rotation);
 
-			Instantiate(_enemy, transform.position, transform.rotation);
-
-			yield return _waitTime;
+			yield return waitForSeconds;
 		}
 	}
 }
