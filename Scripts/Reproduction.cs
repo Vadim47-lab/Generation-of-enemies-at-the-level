@@ -9,8 +9,6 @@ public class Reproduction : MonoBehaviour
 
 	private void Start()
 	{
-		_target = gameObject.GetComponent<GameObject>();
-
 		StartCoroutine(SpawnEnemy());
 	}
 
