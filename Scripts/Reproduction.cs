@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(GameObject))]
 public class Reproduction : MonoBehaviour
 {
-	[SerializeField] private GameObject _target;
+	[SerializeField] private Enemy _enemy = new Enemy();
 
 	private void Start()
 	{
@@ -18,7 +18,7 @@ public class Reproduction : MonoBehaviour
 
 		while (true)
 		{
-		    Instantiate(_target, transform.position, transform.rotation);
+		    Instantiate(_enemy, transform.position, transform.rotation);
 
 		    yield return waitForSeconds;
 		}
